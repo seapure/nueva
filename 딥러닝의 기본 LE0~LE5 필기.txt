@@ -1,0 +1,35 @@
+Supervised learning
+Examples]-image labeling, email spam filter, predicting exam score
+*Training data set
+'AlphaGo' : learning by previous games
+*Types of supervised learning
+-predicting based on training data set(regression)
+-pass/non-pass : binary classification
+-Grading : multi-label classification
+
+
+Unsupervised learning
+-Google news grouping
+-Word clustering
+
+*Linear regression
+-H(x) = Wx + b -> H(x) = X*W (multiple regression)
+선형 회귀 분석 : 어떻게 W를 정하는가? 그 선을 기준으로 다른 데이타들에 대해 어떻게 신뢰도를 관리하는가
+W를 찾는 법 : Gradient decent W = W - a(d/dW)*cost(W) (*a는 learning rate)
+다변수일 땐?
+
+*Logistic regression = Classification (Binary Classification)
+EX] Facebook feed, Spam detection, Credit Card Fraudulent Transaction detection, Finance...etc
+H = Wx + b 를 쓰니 오류가 많다. 그래서 특이한 함수를 찾았다. 
+g(z) = 1/(1+e^(-WX))  :  sigmoid, logistic function
+cost function : 기존의 W 결정 방식은 이쁘게 convex 그래프가 그려지지 않는다.
+다른 식 : cos(H(x), y) = -log(H(x))      : y = 1
+                       = -log(1-H(x))    : y = 0
+확실하게 틀렸을 때 cost가 존재! 하지만 if condition이 들어가면 프로그램 시 복잡하다..
+수정된 식 : cos(H(x), y) = -ylog(H(x)) - (1-y)log(1-H(x)) (똑같은 식)
+
+*Softmax Regression (Multinomial classification)
+A or not, B or not, C or not 이라는 BInomial Classification 으로도 구현이 가능하다.
+X-ㅁ-Y_bar
+cross entropy로 표현된 벡터식은 위의 Ligistic Cost와 결국엔 동일
+최솟값은 똑같이 Gradient descent를 이용해 구한다. -a(delta)L(w1, w2)

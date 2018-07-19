@@ -1,0 +1,112 @@
+<Lec 7-1>
+Learning rate
+STEP : -a(delta)L(w1, w2)에서의 a
+step이 너무 크면 정확한 local minimum을 찾지 못함
+       너무 작으면 processing 시간이 너무 오래 걸림
+1. observe the cost function
+2. check if it goes down in a reasonable rate
+
+
+Date Preprocessing
+Data (X) preprocessing for gradient descent
+1. Zero-centering
+2. Normalizing
+3. 특이값 제거
+
+
+Overfitting의 방지
+when 1. our model is very good with training data set
+     2. but not goot at test dataset or in real use
+학습데이타에만 맞는 모델이 만들어진 것
+solution 1. more training data
+         2. reduce the number of features
+         3. regularization 
+            - not too big numbers in the weight : regularization strenght*(SIGMA)W^2
+
+
+
+<Lec 7-2>
+Evaluation using training set? Maybe 100% correct, system will just memorize
+Devide the data sets : Training set & Test set
+                      (Training set + Validation) : 상수가 적당한지 체크할 때
+
+Online learning
+100만 개 데이타가 있으면 10만 개 씩 나누어 학습시킨다. 이전의 데이타는 기억
+
+Example : MNIST Data Set
+
+
+
+<Lec 8-1>
+어떻게 Neural Network가 시작했는가?
+ultimate dream : thinking machine
+*Neuron : Input signal((SIGMA)(x*w) +b) 가 특정값 보다 크면 1, 작으면 0
+*Neural Network : 0과 1이 input과 output이 되고, 각각의 neuron에 weight와 bias가 존재하는 구조, 0과 1 둘 중 하나인 output을 만들기 위해 sigmoid함수 사용
+
+AND/OR problem : linearly separable -  조합해서 뭔가 만들 수 있겠다! 했음
+XOR problem : not linearly separable - 기계적으로 조합해서 만드는게 안됨...
+'Marvin Minsky' : XOR은 못만든다... 각각의 neuron이 w와 b를 가질 때 그걸 기억시키는게 안된다는게 문제. 
+
+Backpropagation(Paul Werbos, Hinton) : w와 b를 학습시키는 방법 알아냄
+Convolutionsal Neural Networks() : 고양이  뉴런 관찰. 그림에 따라 뉴런 다르게 활성화
+                 일부에 대한 뉴런이 각각 있고, 그것이 조합되어 그림에 대한 인식이 된다.
+
+A BIG problem : Backpropagation은 적은 수의 레이어에만 적용됨. 레이어가 겹쳐질수록 기억 성능이 떨어짐
+CIFAR : encourages basic research without direct application
+Breakthrough in 2006, 2007 by Hinton and Bengio : if the weights are initialized in a clever way rather than randomly - Deep nets, Deep learning 
+ImageNet Classification : 이미지 내의 물체 분류 과제 어렵다 - 정확도 사람수준
+speach reconition : 사람수준
+
+Why should I care? : .We have data, we sellsomething, we do business
+Deep learning 기반으로 학습, 인식 적용할 분야는 정말 많다.
+특히 Student : Not too late to be a world expert, not too complicated
+After all, it is fun! we 'make' some existence
+
+
+
+<Lec 9-1 : XOR 문제 Neural Network로 풀기>
+Forward Propagation w=[5,5]T, b=-8, w=[-7, -7]T, b=3, w=[-11, -11], b=6,
+다른 조합이 존재할까? 찾아보기
+
+K = tf.sigmoid(tf.matmul(X, W1) + b1)
+hypothesis = tf.sigmoid(tf.matmul(K, W2) + b2)   --->tf(tensor flow로 쉽게 구현 가능)
+어떻게 자동적으로 w랑 b를 계산해낼 수 있을지 다음시간
+
+
+
+<Lec 9-2 : Backpropagation>
+cost 함수 : 미분값을 구해서 최대한 오차가 적은 지점을 찾아 나간다.
+그러나 Neural Network에서는 어떻게 그런 미분값을 구하지? -> Back propagation
+f = wx + b, g = wx, f = g + b
+w가 f에 미치는 영향, x가 f에 미치는 영향, b가 f에 미치는 영향
+dg/dw = x, dg/dx = w // df/dg = 1, df/db=  1 // 
+아무튼 복잡한 과정도 "chian rule"로 거슬러가며 해결
+
+
+
+<Lec 10-1 : Sigmoid보다 좋은 ReLU>
+Backprogation의 한계 : Layer가 많아지면 쓸모가 없다.(tf로 구현해보면 알 수 있음)
+WHY?
+sigmoid 함수가 정확하게 0이나 1이 나오지 않기 때문에 Layer가 겹쳐질수록 gradient가 옅어진다(제대로 이해 못했음)
+ReLU : Rectified Linear Unit - NN에서는 relu쓰기!! (tf.nn.relu)
+
+<Lec 10-2 다시듣기>
+
+<Lec 10-3 Dropout과 앙상블>
+Layer가 깊어질수록 overfitting이 일어날 가능성이 높아진다.
+Weight가 너무 커지지 않도록 잡아주기
+Dropout : NN을 몇개를 아에 끊어버리자. 학습시킬 때만
+Ensemble : 여러 learning model을 만들어 결과에서 합치기 - 정확도 향상에 기여
+
+<Lec 10-4 : 레고처럼 모듈 쌓기>
+Fast forward : 출력을 레이어 몇개를 넘긴 곳에 바로 넘겨주기
+Split & Merge : 나눠서 가다가 만나게 하기
+
+<Lec 11-1 : ConvNet의 Conv 레이어 만들기>
+특정 크기의 필터마다 한 값을 뽑아낸다. 
+Stride의 크기, filter의 크기
+(N-F)/stride + 1
+In practice : zero pad around the boarder, 정보의 손실 없이 같은 크기의 output 나옴
+여러개의 필터를 생성(각각 weight이 다르다.) CONV과 ReLU 사용
+Pooling Layer, 각 레이어를 뽑아내 filter를 적용하고 다시 겹침
+Max Pooling 각 레이어의 필터를 거친 값들 중 가장 큰 값을 쓰는 것

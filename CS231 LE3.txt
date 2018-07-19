@@ -1,0 +1,37 @@
+CS231n Lecture 3
+
+1. Loss Function (How to actuall choose W?)
+- we first ned to quantify the badness : Loss Functions
+{x_i, y_i} : x - image, y - label integer
+
+2.Multiclass SVM loss : 
+if s_y has smaller value than s_j+1, the loss is 0, if it's smaller, s_j-s_y+1
+(s_y_i는 y_i의 값의 점추정값이라보면 된다. W가 바뀌면 같이 바뀐다.)
+(why +1?, we actually care whether it's 0 or not, so whole w up and down doesn't matter)
+(w values are initialized with some random values, small uniform random values)
+(linear versus square = how much we care about the error
+Loss should be low as possible
+
+We don't really care about the training data performance, rather training test data
+the model that just fits for training data might not be goot ->>> Regularization
+based on Occam's Razor
+Regularization term makes the regression prefer polynomials of the lower degree
+on the degree of lamda, you can adjust how complex regression model you'll adopt
+Can use L1 or L2 depending on your problem
+
+3. Softmax Classifier(Multinomial Logistic Regression)
+Wx 값을 exp()취하고, normalize, 그게 probabilities가 된다. 거기에 -log(e(y)_normalized) = L_i
+
+*difference between SVM & Softmax Classifier, SVM just want the score to be above others, but Softmax makes the highest score to be completely higher than others
+What we've learnt are part of Supervised Learning
+1) specify some function f
+2) specify loss function
+3) some regularization term
+4) find W that minimizes the loss function
+
+4. Optimization(finding the best regularization term and smallest Loss)
+look for Hunkim's Lecture
+Numerical gradient : Super slow!!!! not a good idea
+Anlytic gradient : exact, fast, error-prone
+=> always use analytic gradient, but check with numerical gradient
+Gradient descent : 

@@ -1,0 +1,18 @@
+Convolutional Neural Network	
+Fully connected Layer : stretch spatial vector into a one dimensional vector
+Convolution Layer : preserve sptial information
+
+dot product for the entire depth of layer, so the output; layer * number of filters
+zero padding : one of the methods to maintain the size of our layers
+
+the brain/neuron view of CONV Layer : it's just a neuron with local connectivity(Neuron model usually connects to every input)
+
+"filter" == "receptive field"
+
+**Pooling Layer
+-makes the representations smaller and more manageable
+-operates over each activation map independantly
+-do nothing on the depth
+ex]max pooling : divide x, y axis with filter size and take the maximum values for each filters
+average poling
+People have begun to use stride more.(Same feature)

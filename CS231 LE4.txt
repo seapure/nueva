@@ -1,0 +1,34 @@
+*Computationsal graphs : µµ½ÄÈ­ - as it get more complex, it becomes more necessary
+
+1.1. Backpropagation
+Chain rule, dq/dx, dq/dy, df/dq, df/dz
+Local gradient, function with a set of inputs and a output
+*as it becomes super-complicated, you break down the layers into simple nodes
+First, draw it into the computational graph(as simple as you want)
+Second, backpropgation 
+***can compute all the gradients that you need!!
+
+upstream -> backprop -> connected nodes
+
+We can sometimes group some nodes as long as you can write down local gradient for it
+=>simpler and compact computational graph [EX]sigmoid gate
+add gate : equally distributed
+max gate : gradient router, one get the full value and the other one 0
+mul gate : gradient switcher
+
+1.2. forward() / backward()
+***forward path : compute result of an operation and save any intermediates needed for gradient computation in memory
+***backward path : apply the chain rule to compute the gradient of the loss function with respect to the inputs
+
+
+2.1. Neural Network
+Before - Linear score function : f = Wx
+Now - 2-layer Neural Network : W_2*max(0, W_1_x); use none linear functions
+If you have yellow car and a red car, and you want a car category that can label both cars, you can stack two layers. W_1 that defines each kinds of cars with its own template and W_2 that's a weighted sum of all of these templates
+
+Neural Network's connection with biological analogy is very loose
+Biological Neurons : 
+1)Many different types
+2)Dendrites can perform complex non-linear computations
+3)Synapses are not a single wieght but a complex non-linear dynamical system
+4)Rate code may not be adequate

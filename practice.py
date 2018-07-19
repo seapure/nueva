@@ -1,8 +1,9 @@
-#Jump to python LE5
+#pygame
+
 import pygame
 pygame.init()
 
-window = pygame.display.set_mode((500, 320))
+window = pygame.display.set_mode((1080, 720))
 is_end = False
 
 def draw_image():
@@ -14,8 +15,8 @@ while not is_end :
             is_end = True
 
     window.fill((255, 255, 255))
-    drow_image()
+    draw_image()
     pygame.display.update()
 
 pygame.quit()
-quit()
+quit()  

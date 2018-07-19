@@ -1,0 +1,49 @@
+Lectrue2
+1. Challenges
+Semantic Gap, Viewpoint, illumination, deformation, occlusion. background clutter, intraclass variation
+
+
+2. Attempts
+*API model : classify function only?
+-find edges : not a scalable method
+-data-driven approach
+1)collect a large dataset
+2) use machine learning to train a classifier
+3) evaluate the classifier on new images
+*API model chnages : train model and predict model
+CIFAR10 Example Dataset
+-Nearest Neighbor classifier : Finding most similar images
+1)Distance Metric to compare images : just pixel computation
+2)fast in train and slow in test
+-K-Nearest Neighbors
+1)instead of copying label  from nearest neighbor, take majority vote from K closest points : white regions = no majority
+->smoothe out boundaries
+two viewpoints : concrete images and high dimensional vectors
+-Distance metric - L1 : Manhattan(ablsolute difference), L2 : Euclidean(squareroot)
+1)shapes of decision boundaries actually change
+
+
+3. Hyperparameters
+*choosing different values of K, distance metrics : how do we choose?-Hyperparameters
+better try all and see what works the best!!
+best accurace and best perfomance?
+Idea #1 : choose that work best on dataset - TERRIBLE! K=1 always works perfectly on training data
+Idea #2 : split data in train and test, choose that work best on test data - TERRIBLE : No idea how algorithm will perform on new data
+Idea #3 : split data into train, val, and test; choose that works best on val and evaluate on test : show how the algorithm works on unseen data(기출문제, 모의고사, 그리고 실전 시험 정도의 차이)
+Idea #4 : Cross-Validation : split data into folds - try several validation sets; good but use much computational resources
+
+
+4. Problems
+k-nearest neighbor, distance metric system L1 and L2 are never used in practice
+1) very slow at test time, distance metric system not informative(different between images can't be found)
+2) curse of dimensionality ?? 이부분 잘 이해 안감
+
+
+5. Linear Classification(a sort of neural networks)
+image -> f(x, W); W-parameters or weights -> 10 numbers giving class scores
+we no more need training data, we only need W
+f(x, W) = Wx + b, x['number of pixels', 1], W['number of class scores', 'number of pixels'], b['number of class scores', 1]
+problem : it just use one template(one W values)
+why 'Linear'? because with W, we determine whether it's classified to A or not
+when the dataset is not linear, it has problem : 체크무늬, 과녁무늬, 점처럼 찍힐 때
+how can we choose the right W?! Next class
